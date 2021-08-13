@@ -1,0 +1,45 @@
+schema {
+    query: Query
+    mutation: BookInventoryUpdate
+}
+
+type BookInventoryUpdate {
+    addBook(book: BookInput!): Book
+    updateBook(id: ID!, book: BookInput!): Book
+    deleteBook(id: ID!): [Book]
+}
+
+type Query {
+    bookById(id: ID): Book
+    findBooksByAuthor(id: ID!): [Book]
+    getAllBooks: [Book]
+}
+
+type Book {
+    id: ID
+    name: String
+    pageCount: Int
+    author: Author
+}
+
+type Author {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+input BookInput {
+    name: String
+    pageCount: Int
+    author: AuthorInput
+}
+
+input AuthorInput {
+    firstName: String
+    lastName: String
+}
+
+input BookWrapper {
+    title: String
+    isbn: String
+}
